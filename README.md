@@ -111,3 +111,37 @@ Matplotlib, Seaborn – visualizations
 
 dotenv – secure API key management
 
+🎥 Demo Video
+The demo includes:
+
+Code walkthrough
+
+App usage with sample queries
+
+Gemini-generated summaries
+
+Bonus visualizations
+
+📁 [Demo video attached or shared via Drive]-- https://drive.google.com/file/d/1s0TnqhhGf5ObviHGb7x_Hnfk5ZrpOfN3/view?usp=sharing
+
+📦 Files Included
+app.py – Streamlit application
+
+.env – Gemini API key (not shared publicly)
+
+README.md – this file
+
+Demo video file / link
+
+✅ Status
+✅ Task 2 fully implemented with all bonus points covered:
+
+ RAG pipeline
+
+ Gemini summarization
+
+ Filtering
+
+ JSON export
+
+ Visualizations
