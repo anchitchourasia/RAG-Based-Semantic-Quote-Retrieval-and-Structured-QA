@@ -1,74 +1,113 @@
-# RAG-Based-Semantic-Quote-Retrieval-and-Structured-QA
-# 🔍 RAG-Based Quote Search Assistant (Gemini 1.5 Flash Powered)
+# 🔍 Task 2 – Quote Search Assistant (RAG + Gemini 1.5 Flash)
 
-This project is part of the **Vijayi WFH AI/ML Internship - May/June 2025**.  
-It demonstrates a Retrieval-Augmented Generation (RAG) system that semantically retrieves quotes and generates intelligent summaries using **Gemini 1.5 Flash**.
+This project is built as part of the **Vijayi WFH Internship Assignment (May–June 2025)**. It demonstrates a complete **Retrieval-Augmented Generation (RAG)** pipeline that allows users to semantically search for quotes using natural language and receive intelligent results with summaries.
 
 ---
 
-## 🧠 What It Does
+## 💡 Features
 
-- Loads 10,000+ English quotes from HuggingFace
-- Encodes them using Sentence Transformers (MiniLM)
-- Stores and searches them using FAISS vector database
-- Uses Gemini 1.5 Flash to:
-  - Summarize top matching quotes
-  - Highlight and explain the most impactful quote
+- 📖 Semantic quote retrieval from the `Abirate/english_quotes` dataset
+- ⚡ FAISS-based vector similarity search with `SentenceTransformer`
+- 🧠 Gemini 1.5 Flash LLM summary generation (via Google AI Studio API)
+- 🔎 Multi-hop filtering by `author` and `tags`
+- 📥 JSON download of search results
+- 📊 Visualizations: top authors & tags
+- 🌐 Streamlit UI for easy interaction
 
 ---
 
-## 🚀 How to Run
+## 📁 Dataset Used
 
-### 1. 📁 Clone or copy this folder
+- **Source**: [Hugging Face – Abirate/english_quotes](https://huggingface.co/datasets/Abirate/english_quotes)
+- Fields:
+  - `quote`: The quote text
+  - `author`: The quote author
+  - `tags`: List of tags/keywords
 
-Make sure you have:
+---
 
-rag_quote_app.py
-.env ← contains your API key
+## 🚀 How It Works
+
+### 🔹 Step-by-Step Flow
+
+| Step | Component |
+|------|----------|
+| 1. | Load dataset and combine quote-author-tags |
+| 2. | Encode using `all-MiniLM-L6-v2` |
+| 3. | Index vectors in FAISS |
+| 4. | Accept user query and optional filters |
+| 5. | Retrieve top relevant quotes |
+| 6. | Summarize using Gemini 1.5 Flash |
+| 7. | Allow JSON download |
+| 8. | Show visual insights (bar plots) |
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repo / copy files
+
+Make sure your `GOOGLE_API_KEY` is stored in a `.env` file.
+
+GOOGLE_API_KEY=your_gemini_key_here
 
 perl
 Copy
 Edit
 
-### 2. 📦 Install required packages
+### 2. Install dependencies
 
 ```bash
-pip install streamlit sentence-transformers faiss-cpu pandas datasets python-dotenv google-generativeai
-3. 🔑 Set your API key
-Create a file named .env in the same directory:
-
-ini
-Copy
-Edit
-GOOGLE_API_KEY=your_real_gemini_1_5_flash_api_key_here
-4. ▶️ Launch the app
+pip install streamlit datasets sentence-transformers faiss-cpu numpy pandas python-dotenv google-generativeai matplotlib seaborn
+3. Run the app
 bash
 Copy
 Edit
-streamlit run rag_quote_app.py
-💡 Sample Queries
-motivational quotes by Albert Einstein
-
-funny quotes about failure
-
-courage quotes from female authors
-
-wisdom quotes by Oscar Wilde
-
-🧪 Example Output
-css
+streamlit run app.py
+💬 Example Queries
+text
 Copy
 Edit
-⭐ Top Matching Quotes
-“Anyone who has never made a mistake has never tried anything new.” — Albert Einstein
-...
+"inspirational quotes by Oscar Wilde"
+"quotes about failure by scientists"
+"quotes tagged with courage and hope"
+📥 JSON Output Example
+json
+Copy
+Edit
+[
+  {
+    "quote": "Success is not final, failure is not fatal...",
+    "author": "Winston Churchill",
+    "tags": ["success", "failure"]
+  },
+  ...
+]
+🧠 Gemini 1.5 Flash Summary Output
+text
+Copy
+Edit
+Summary:
+Most quotes focus on resilience and the idea that failure is part of success. The most powerful quote is from Winston Churchill...
 
-🧠 AI Summary (Gemini 1.5 Flash):
-These quotes emphasize perseverance, curiosity, and humility. The most powerful quote reframes failure as essential to growth...
-🔍 Tech Stack
-Layer	Tools/Libraries
-Dataset	HuggingFace Abirate/english_quotes
-Embeddings	sentence-transformers (MiniLM)
-Vector Search	FAISS
-Generation	google.generativeai — Gemini 1.5 Flash
-Frontend	Streamlit
+It stands out due to its universal message and emotional impact.
+📊 Visual Insights (Bonus)
+✅ Top 10 Authors with most quotes
+
+✅ Top 10 Most Frequent Tags
+
+Generated using Seaborn & Matplotlib for exploratory analysis.
+
+🌐 Tech Stack
+Streamlit – frontend UI
+
+SentenceTransformers – semantic embedding
+
+FAISS – vector similarity search
+
+Gemini 1.5 Flash – summary generation (Google Generative AI)
+
+Matplotlib, Seaborn – visualizations
+
+dotenv – secure API key management
+
